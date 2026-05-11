@@ -17,7 +17,7 @@ const contactMethods = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+44 7727 888031',
+    value: '020 3835 2845',
     href: 'tel:+447727888031',
   },
   {
