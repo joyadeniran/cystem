@@ -1,125 +1,180 @@
-import { Sun, Flame, FileText, Home, Network, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router'
+import { Home, Zap, SunMedium, Flame, ShieldCheck, ArrowRight, Check } from 'lucide-react'
 
-type Service = {
-  icon: typeof Sun
-  title: string
-  description: string
-  href: string
-  external: boolean
-}
-
-const services: Service[] = [
+const coreServices = [
   {
-    icon: Sun,
-    title: 'Solar Installations',
-    description: 'Complete rooftop and ground-mount solar PV systems for homes and businesses, designed for maximum efficiency and long-term savings.',
-    href: '#contact',
-    external: false,
-  },
-  {
-    icon: Flame,
-    title: 'Heat Pumps',
-    description: 'Air-source and ground-source heat pump installations that reduce heating costs and carbon emissions year-round.',
-    href: '#contact',
-    external: false,
-  },
-  {
-    icon: FileText,
-    title: 'Energy Performance Certificate (EPC)',
-    description: 'Official EPC assessments to measure your property\'s energy efficiency and unlock grants, improve ratings, and meet legal requirements.',
-    href: 'https://www.epchub.org/a/titilope-fadipe?s=web',
-    external: true,
-  },
-  {
+    id: 'property',
+    title: 'Property Investment & Development',
+    description:
+      'Property acquisition support, refurbishment, value enhancement, buy-refurbish-refinance strategies, HMO projects and resale projects.',
+    features: [
+      'Opportunity review & due diligence',
+      'Refurbishment & value enhancement',
+      'BRR & HMO accommodation models',
+      'Commercial property improvements',
+    ],
+    buttonText: 'Explore Property Services',
+    link: '/property',
     icon: Home,
-    title: 'Domestic Retrofit',
-    description: 'Whole-house energy upgrades including insulation, ventilation, and smart heating controls.',
-    href: '#contact',
-    external: false,
+    badge: 'Strategic & Delivery',
   },
   {
-    icon: Network,
-    title: 'District Heating',
-    description: 'Shared heating systems for residential and commercial developments, improving efficiency at scale.',
-    href: '#contact',
-    external: false,
+    id: 'retrofit',
+    title: 'EPC & Domestic Retrofit',
+    description:
+      'Evidence-led energy assessments and whole-house retrofit support, including insulation, ventilation, heating controls and improvement planning.',
+    features: [
+      'Accredited domestic EPC surveys',
+      'Pre-sale & pre-let lodgements',
+      'Whole-house retrofit planning',
+      'Damp, mould & stock condition surveys',
+    ],
+    buttonText: 'Book an Assessment',
+    link: '/energy-retrofit',
+    icon: Zap,
+    badge: 'Energy & Efficiency',
+  },
+  {
+    id: 'renewables',
+    title: 'Renewable Energy',
+    description:
+      'Solar PV, heat pumps, feasibility studies and tailored low-carbon solutions for domestic and commercial properties.',
+    features: [
+      'Rooftop & commercial solar PV',
+      'Air-source heat pump systems',
+      'Feasibility studies & ROI modeling',
+      'Carbon reduction roadmaps',
+    ],
+    buttonText: 'Explore Energy Solutions',
+    link: '/energy-retrofit#renewables',
+    icon: SunMedium,
+    badge: 'Low-Carbon Tech',
+  },
+  {
+    id: 'heating',
+    title: 'Boiler & Heating Services',
+    description:
+      'Boiler fault diagnosis, repairs, annual servicing, replacement and installation delivered by appropriately qualified heating engineers.',
+    features: [
+      'Boiler diagnostics & prompt repairs',
+      'Annual boiler servicing & certification',
+      'System replacement & combi upgrades',
+      'Power flushing & smart heating controls',
+    ],
+    buttonText: 'Book a Heating Service',
+    link: '/heating',
+    icon: Flame,
+    badge: 'Heating & Gas Safe',
+  },
+  {
+    id: 'compliance',
+    title: 'Electrical Safety & Compliance',
+    description:
+      'Electrical Installation Condition Reports (EICRs) and compliance support for homeowners, landlords and property managers.',
+    features: [
+      'Formal EICR inspection & testing',
+      'Clear classification codes (C1, C2, C3, FI)',
+      'Remedial works quotations',
+      'Landlord legal safety certificates',
+    ],
+    buttonText: 'Request an EICR',
+    link: '/compliance',
+    icon: ShieldCheck,
+    badge: 'Certified Compliance',
   },
 ]
 
 export default function Services() {
   return (
-    <section id="services" className="w-full py-16 sm:py-24 lg:py-32 bg-white relative">
-      {/* Decorative wave at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          className="w-[1000%] h-24 sm:h-32"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="#ecfdf5"
-          />
-        </svg>
-      </div>
-
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="w-8 h-0.5 bg-emerald-500" />
-            <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.08em] text-emerald-600">
-              Our Services
-            </span>
-            <span className="w-8 h-0.5 bg-emerald-500" />
+    <section id="services" className="w-full py-20 lg:py-28 bg-stone-50 border-y border-stone-200">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold tracking-wider uppercase">
+            Multidisciplinary Delivery
           </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-emerald-900 leading-[1.1] tracking-[-0.02em]">
-            What We Offer
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight">
+            Everything your property needs, in one place
           </h2>
-
-          <p className="mt-4 text-base sm:text-lg text-stone-600 leading-relaxed max-w-[560px] mx-auto">
-            From initial consultation to full installation and ongoing support, we deliver end-to-end renewable energy solutions tailored to your needs.
+          <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
+            Our multidisciplinary approach connects property strategy with practical delivery. Whether you are planning a refurbishment, need a boiler repaired, require an EPC or EICR, or want to improve a building through retrofit and renewable technology, our team can coordinate the right solution.
           </p>
         </div>
 
-        {/* Service Cards Grid */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="group p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100/50 shadow-[0_4px_24px_rgba(5,46,22,0.06)] hover:shadow-[0_12px_40px_rgba(5,46,22,0.1)] hover:border-emerald-400 hover:-translate-y-1 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-            >
-              <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-4 group-hover:bg-emerald-200 transition-colors duration-300">
-                <service.icon className="w-5 h-5 text-emerald-700" />
-              </div>
+        {/* 5 Core Service Cards Grid */}
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {coreServices.map((service, index) => {
+            const Icon = service.icon
+            const isFullWidth = index === 4 // 5th item nicely styled
 
-              <h3 className="text-lg sm:text-xl font-semibold text-emerald-900">
-                {service.title}
-              </h3>
-
-              <p className="mt-2 text-sm sm:text-base text-stone-600 leading-relaxed">
-                {service.description}
-              </p>
-
-              <a
-                href={service.href}
-                {...(service.external
-                  ? { target: '_blank', rel: 'noopener noreferrer' }
-                  : {
-                      onClick: (e) => {
-                        e.preventDefault()
-                        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-                      },
-                    })}
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 hover:text-emerald-900 group/link"
+            return (
+              <div
+                key={service.id}
+                className={`group relative bg-white rounded-2xl p-7 sm:p-8 border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between ${
+                  isFullWidth ? 'md:col-span-2 lg:col-span-1' : ''
+                }`}
               >
-                Learn more
-                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-300" />
-              </a>
-            </div>
-          ))}
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                      {service.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-stone-900 group-hover:text-emerald-900 transition-colors">
+                    {service.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm text-stone-600 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  <div className="mt-6 pt-5 border-t border-stone-100 space-y-2">
+                    {service.features.map((feat, i) => (
+                      <div key={i} className="flex items-start gap-2 text-xs text-stone-600">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-4">
+                  <Link
+                    to={service.link}
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-stone-100 group-hover:bg-emerald-600 text-stone-800 group-hover:text-white font-semibold text-xs tracking-wide uppercase transition-all duration-200"
+                  >
+                    <span>{service.buttonText}</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Commercial Banner Notice */}
+        <div className="mt-10 p-6 rounded-2xl bg-gradient-to-r from-emerald-900 to-stone-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+          <div>
+            <span className="text-xs uppercase font-bold text-emerald-300 tracking-wider">
+              Landlords & Housing Providers
+            </span>
+            <h4 className="text-lg font-bold text-white mt-1">
+              Need multi-property or portfolio coordination?
+            </h4>
+            <p className="text-xs text-emerald-100/80 mt-0.5">
+              We coordinate bulk EPCs, EICR testing programmes, planned boiler servicing, and whole-building retrofit schemes.
+            </p>
+          </div>
+          <Link
+            to="/commercial"
+            className="shrink-0 px-5 py-2.5 rounded-xl bg-white text-emerald-950 font-bold text-xs uppercase hover:bg-emerald-50 transition-colors"
+          >
+            Arrange a Commercial Consultation
+          </Link>
         </div>
       </div>
     </section>

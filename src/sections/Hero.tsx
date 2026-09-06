@@ -1,210 +1,101 @@
-import { useEffect, useRef } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ShieldCheck, CheckCircle2, ChevronRight } from 'lucide-react'
+import { Link } from 'react-router'
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const section = sectionRef.current
-    const content = contentRef.current
-    const image = imageRef.current
-    if (!section || !content || !image) return
-
-    const words = content.querySelectorAll('.hero-word')
-    const sub = content.querySelector('.hero-sub')
-    const cta = content.querySelector('.hero-cta')
-    const trust = content.querySelector('.hero-trust')
-    const scrollInd = content.querySelector('.hero-scroll')
-
-    // Initial state
-    words.forEach((w) => {
-      ;(w as HTMLElement).style.clipPath = 'inset(0 100% 0 0)'
-      ;(w as HTMLElement).style.opacity = '0'
-    })
-    if (sub) {
-      ;(sub as HTMLElement).style.opacity = '0'
-      ;(sub as HTMLElement).style.transform = 'translateY(20px)'
-    }
-    if (cta) {
-      ;(cta as HTMLElement).style.opacity = '0'
-      ;(cta as HTMLElement).style.transform = 'translateY(20px)'
-    }
-    if (trust) {
-      ;(trust as HTMLElement).style.opacity = '0'
-    }
-    if (scrollInd) {
-      ;(scrollInd as HTMLElement).style.opacity = '0'
-    }
-    ;(image as HTMLElement).style.transform = 'scale(1.08)'
-    ;(image as HTMLElement).style.opacity = '0'
-
-    // Animation sequence
-    const timers: ReturnType<typeof setTimeout>[] = []
-
-    timers.push(
-      setTimeout(() => {
-        ;(image as HTMLElement).style.transition = 'transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-out'
-        ;(image as HTMLElement).style.transform = 'scale(1)'
-        ;(image as HTMLElement).style.opacity = '1'
-      }, 0)
-    )
-
-    words.forEach((word, i) => {
-      timers.push(
-        setTimeout(() => {
-          ;(word as HTMLElement).style.transition = 'clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease-out'
-          ;(word as HTMLElement).style.clipPath = 'inset(0 0% 0 0)'
-          ;(word as HTMLElement).style.opacity = '1'
-        }, 600 + i * 100)
-      )
-    })
-
-    timers.push(
-      setTimeout(() => {
-        if (sub) {
-          ;(sub as HTMLElement).style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)'
-          ;(sub as HTMLElement).style.opacity = '1'
-          ;(sub as HTMLElement).style.transform = 'translateY(0)'
-        }
-      }, 1200)
-    )
-
-    timers.push(
-      setTimeout(() => {
-        if (cta) {
-          ;(cta as HTMLElement).style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
-          ;(cta as HTMLElement).style.opacity = '1'
-          ;(cta as HTMLElement).style.transform = 'translateY(0)'
-        }
-      }, 1400)
-    )
-
-    timers.push(
-      setTimeout(() => {
-        if (trust) {
-          ;(trust as HTMLElement).style.transition = 'opacity 0.5s ease-out'
-          ;(trust as HTMLElement).style.opacity = '1'
-        }
-      }, 1800)
-    )
-
-    timers.push(
-      setTimeout(() => {
-        if (scrollInd) {
-          ;(scrollInd as HTMLElement).style.transition = 'opacity 0.5s ease-out'
-          ;(scrollInd as HTMLElement).style.opacity = '1'
-        }
-      }, 2200)
-    )
-
-    return () => timers.forEach(clearTimeout)
-  }, [])
-
-  const headlineWords = ['Powering', 'a', 'Cleaner', 'Future', 'for', 'Homes', '&', 'Businesses']
-
   return (
     <section
       id="home"
-      ref={sectionRef}
-      className="relative w-full h-screen min-h-[600px] overflow-hidden"
+      className="relative w-full min-h-[720px] lg:min-h-[85vh] flex items-center justify-center overflow-hidden bg-stone-950 pt-20 pb-16"
     >
-      {/* Background Image */}
-      <div
-        ref={imageRef}
-        className="absolute inset-0 will-change-transform"
-        style={{ transform: 'translateZ(0)' }}
-      >
+      {/* Hero Background with High-Quality Property & Green Renovation visual */}
+      <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-solar-farm.jpg"
-          alt="Solar farm at golden hour"
-          className="w-full h-full object-cover"
+          src="/images/hero-property-renovation.jpg"
+          alt="Renovated British property with architectural glazing and green energy improvements"
+          className="w-full h-full object-cover object-center scale-105 animate-in fade-in zoom-in-95 duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#052e16]/90 via-[#065f46]/70 to-[#047857]/60" />
+        {/* Subtle cinematic gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/85 to-emerald-950/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/40" />
       </div>
 
-      {/* Content */}
-      <div
-        ref={contentRef}
-        className="relative z-10 h-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-16 sm:pb-24 lg:pb-24"
-      >
-        <div className="max-w-[680px]">
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-[-0.02em]">
-            {headlineWords.map((word, i) => (
-              <span key={i} className="hero-word inline-block mr-[0.3em]">
-                {word}
-              </span>
-            ))}
+      <div className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div className="max-w-3xl space-y-6">
+          {/* Eyebrow badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-xs font-semibold tracking-wider uppercase text-emerald-300">
+              Property, Energy and Compliance Solutions
+            </span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+            Improving Properties. <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-200">
+              Reducing Energy Costs.
+            </span>{' '}
+            <br />
+            Creating Lasting Value.
           </h1>
 
-          {/* Subheadline */}
-          <p className="hero-sub mt-6 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[560px]">
-            Tailor-made solar and heat pump solutions across the UK and Africa.
-            From feasibility studies to full installation, we make renewable energy simple, affordable, and reliable.
+          {/* Supporting Copy */}
+          <p className="text-base sm:text-lg text-stone-200 leading-relaxed max-w-2xl font-normal">
+            <strong className="text-white font-semibold">Cystem Green Solutions Limited</strong> provides joined-up property, retrofit, renewable-energy, heating and compliance services. From acquiring and improving property to assessing energy performance, upgrading heating systems and supporting legal compliance, we help homeowners, landlords, investors, housing providers and businesses make confident decisions.
           </p>
 
-          {/* CTA Group */}
-          <div className="hero-cta mt-8 flex flex-col sm:flex-row gap-4">
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault()
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold text-sm sm:text-base hover:from-emerald-700 hover:to-emerald-600 hover:-translate-y-0.5 transition-all duration-300 group shadow-lg"
-            >
-              Get a Free Quote
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
-            <a
-              href="#services"
-              onClick={(e) => {
-                e.preventDefault()
-                document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full border-2 border-white/30 text-white font-semibold text-sm sm:text-base hover:bg-white hover:text-emerald-900 transition-all duration-300"
-            >
-              Explore Our Services
-            </a>
-          </div>
-        </div>
-
-        {/* Trust Bar */}
-        <div className="hero-trust absolute bottom-0 left-0 right-0 bg-black/20 backdrop-blur-sm">
-          <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-4 text-xs sm:text-sm text-white/70">
-              <span className="flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Trading Standards Approved
-              </span>
-              <span className="hidden sm:inline text-white/40">•</span>
-              <span className="flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                TrustMark Registered
-              </span>
-              <span className="hidden sm:inline text-white/40">•</span>
-              <span className="flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Green Tech Alliance Member
-              </span>
+          {/* Quick Highlight Pills */}
+          <div className="flex flex-wrap gap-y-2 gap-x-4 pt-1 text-xs text-emerald-200/90 font-medium">
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>Property Investment & Refurbishment</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>Boiler Servicing & Repairs</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>EPC & Electrical EICR Certificates</span>
             </div>
           </div>
-        </div>
 
-        {/* Scroll Indicator */}
-        <div className="hero-scroll absolute bottom-20 sm:bottom-24 lg:bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <div className="relative w-px h-6 bg-white/30">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/70 animate-bounce" />
+          {/* Buttons */}
+          <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-stone-950 font-bold text-sm tracking-wide uppercase transition-all duration-200 shadow-xl shadow-emerald-950/40 hover:-translate-y-0.5"
+            >
+              <span>Request a Quote</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm backdrop-blur-md border border-white/20 transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <span>Explore Our Services</span>
+              <ChevronRight className="w-4 h-4 text-white/70" />
+            </a>
           </div>
-          <span className="text-[10px] sm:text-xs text-white/50 uppercase tracking-widest">Scroll</span>
+
+          {/* Key Assurance Badges */}
+          <div className="pt-6 border-t border-white/15 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-white/70">
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Gas Safe Qualified Engineers</span>
+            </div>
+            <span className="hidden sm:inline text-white/30">•</span>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Accredited Domestic EPC Assessors</span>
+            </div>
+            <span className="hidden sm:inline text-white/30">•</span>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>Certified Electrical Testing (EICR)</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

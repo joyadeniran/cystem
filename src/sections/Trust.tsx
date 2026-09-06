@@ -1,46 +1,54 @@
-import { Shield, Award, Leaf } from 'lucide-react'
+import { ShieldCheck, Flame, Zap, Award } from 'lucide-react'
 
 const credentials = [
   {
-    icon: Shield,
-    title: 'Trading Standards Approved',
-    description: 'Government-endorsed quality assurance for all our services.',
+    icon: Flame,
+    title: 'Gas Safe Heating Engineers',
+    description: 'All domestic gas boiler repair, servicing, and installation works are undertaken exclusively by qualified Gas Safe registered professionals.',
+  },
+  {
+    icon: Zap,
+    title: 'Competent Certified Electricians',
+    description: 'Electrical inspections and Electrical Installation Condition Reports (EICRs) are completed by formally qualified, competent electrical specialists.',
   },
   {
     icon: Award,
-    title: 'TrustMark Registered',
-    description: 'Certified by the UK\'s leading quality mark for trades.',
+    title: 'Accredited EPC Assessors',
+    description: 'Domestic Energy Performance Certificates are assessed in accordance with government RdSAP methodology and lodged on the official EPC register.',
   },
   {
-    icon: Leaf,
-    title: 'Green Tech Alliance',
-    description: 'Proud member of the sustainable technology network.',
+    icon: ShieldCheck,
+    title: 'Whole-House Retrofit Standards',
+    description: 'We follow integrated retrofit principles ensuring insulation, ventilation, and heating measures work harmoniously without unintended consequences.',
   },
 ]
 
 export default function Trust() {
   return (
-    <section className="w-full py-12 sm:py-16 bg-white border-b border-stone-100">
+    <section className="w-full py-10 bg-white border-b border-stone-200">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
-          {credentials.map((cred, i) => (
-            <div
-              key={i}
-              className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left group"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors duration-300">
-                <cred.icon className="w-5 h-5 text-emerald-700" />
-              </div>
-              <div>
-                <h3 className="text-base sm:text-lg font-semibold text-emerald-900">
-                  {cred.title}
-                </h3>
-                <p className="mt-1 text-sm text-stone-600 leading-relaxed">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {credentials.map((cred, i) => {
+            const Icon = cred.icon
+            return (
+              <div
+                key={i}
+                className="p-5 rounded-xl bg-stone-50/80 border border-stone-200/70 hover:border-emerald-300 transition-colors"
+              >
+                <div className="flex items-center gap-3 mb-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-stone-900 leading-tight">
+                    {cred.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-stone-600 leading-relaxed">
                   {cred.description}
                 </p>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
