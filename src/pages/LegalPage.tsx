@@ -150,7 +150,7 @@ export default function LegalPage() {
 
             <h2 className="text-lg font-bold text-stone-900 pt-2">3. Feedback</h2>
             <p>
-              If you experience any difficulty accessing any part of this website, please contact us at info@cystemgreensolutions.co.uk or call +44 7727 888031. We welcome your feedback and will be pleased to assist.
+              If you experience any difficulty accessing any part of this website, please contact us at info@cystemgreensolutions.co.uk or call +44 20 3761 3974. We welcome your feedback and will be pleased to assist.
             </p>
           </div>
         )}

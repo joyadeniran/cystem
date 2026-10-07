@@ -75,15 +75,15 @@ export default function Contact({ isStandalone = false }: { isStandalone?: boole
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-stone-400 font-medium">Telephone & WhatsApp</div>
+                  <div className="text-xs text-stone-400 font-medium">Telephone</div>
                   <a
-                    href="tel:+447727888031"
+                    href="tel:+442037613974"
                     className="text-base font-bold text-white hover:text-emerald-400 transition-colors"
                   >
-                    +44 7727 888031
+                    +44 20 3761 3974
                   </a>
                   <div className="text-xs text-emerald-400 mt-0.5">
-                    Available for phone calls and WhatsApp messaging
+                    Office landline · WhatsApp messages: +44 7727 888031
                   </div>
                 </div>
               </div>

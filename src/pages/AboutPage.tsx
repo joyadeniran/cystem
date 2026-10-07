@@ -124,7 +124,7 @@ export default function AboutPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Direct Telephone & WhatsApp: +44 7727 888031</span>
+                  <span>Telephone: +44 20 3761 3974 · WhatsApp: +44 7727 888031</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
