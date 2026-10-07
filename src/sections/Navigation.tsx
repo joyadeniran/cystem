@@ -260,16 +260,16 @@ export default function Navigation() {
             {/* Desktop Action Area */}
             <div className="hidden lg:flex items-center gap-4">
               <a
-                href="tel:+447727888031"
+                href="tel:+442037613974"
                 className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
                   isTransparent
                     ? 'text-white hover:bg-white/10'
                     : 'text-emerald-950 hover:bg-emerald-50'
                 }`}
-                title="Call or WhatsApp our team"
+                title="Call our team"
               >
                 <Phone className="w-3.5 h-3.5 text-emerald-500" />
-                <span>+44 7727 888031</span>
+                <span>+44 20 3761 3974</span>
               </a>
 
               <Link
@@ -367,11 +367,11 @@ export default function Navigation() {
 
           <div className="pt-8 border-t border-white/10 space-y-4">
             <a
-              href="tel:+447727888031"
+              href="tel:+442037613974"
               className="flex items-center gap-2 text-emerald-300 text-sm font-semibold"
             >
               <Phone className="w-4 h-4" />
-              <span>+44 7727 888031</span>
+              <span>+44 20 3761 3974</span>
             </a>
             <div className="text-xs text-white/60">
               22B Sydenham Road, London SE26 5QW
